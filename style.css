@@ -557,6 +557,7 @@ body.lang-fr .field-group input { font-family: var(--font-fr); }
 }
 .submit-order-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 body.lang-fr .submit-order-btn { font-family: var(--font-fr); }
+.wa-order-btn { background: linear-gradient(135deg, #25D366, #128C4E) !important; color: white !important; margin-top: 10px; }
 
 .form-note {
   text-align: center;

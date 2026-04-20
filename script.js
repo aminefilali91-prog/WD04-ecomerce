@@ -29,29 +29,51 @@ function scrollToOrder() {
   document.getElementById('order-section').scrollIntoView({ behavior: 'smooth' });
 }
 
-function orderWhatsApp(type) {
-  const waOrderId = Date.now().toString().slice(-6);
-  const confirmLink = `https://sprightly-tartufo-573c77.netlify.app/admin.html?confirm=${waOrderId}`;
-  // save preliminary order
+function submitOrderWhatsApp() {
+  const name    = document.getElementById('ord-name').value.trim();
+  const phone   = document.getElementById('ord-phone').value.trim();
+  const city    = document.getElementById('ord-city').value.trim();
+  const address = document.getElementById('ord-address').value.trim();
+  if (!name || !phone || !city) {
+    document.getElementById('order-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+  if (!/^[0-9]{10}$/.test(phone)) {
+    const el = document.getElementById('ord-phone');
+    el.style.borderColor = '#ff6b6b';
+    el.focus();
+    setTimeout(() => { el.style.borderColor = ''; }, 2500);
+    return;
+  }
+  const price = selectedPayment === 'virement' ? PRICES.discounted : PRICES.full;
+  const orderId = Date.now().toString().slice(-6);
+  const confirmLink = `https://sprightly-tartufo-573c77.netlify.app/admin.html?confirm=${orderId}`;
   const orders = JSON.parse(localStorage.getItem('wd04_orders') || '[]');
   orders.unshift({
-    id: waOrderId,
+    id: orderId,
     date: new Date().toLocaleDateString('ar-MA'),
-    name: '—', phone: '—', city: '—', address: '—',
-    payment: type === 'virement' ? 'virement_bank' : 'cod',
-    price: type === 'virement' ? PRICES.discounted : PRICES.full,
-    status: 'new', notes: 'طلب عبر واتساب'
+    name, phone, city, address,
+    payment: selectedPayment === 'virement' ? `virement_${selectedVirementType}` : selectedPayment,
+    price, status: 'new', notes: 'طلب عبر واتساب'
   });
   localStorage.setItem('wd04_orders', JSON.stringify(orders));
+  const payLabel = selectedPayment === 'virement' ? `تحويل بنكي — ${price} درهم` : `الدفع عند الاستلام — ${price} درهم`;
+  const msg = currentLang === 'ar'
+    ? `مرحبا، بغيت نطلب قفل SmartLook 🔐\n\nالاسم: ${name}\nالهاتف: ${phone}\nالمدينة: ${city}\nالعنوان: ${address}\nالدفع: ${payLabel}\n\nرقم الطلب: #${orderId}\n✅ تأكيد الطلب: ${confirmLink}`
+    : `Bonjour, je voudrais commander SmartLook 🔐\n\nNom: ${name}\nTél: ${phone}\nVille: ${city}\nAdresse: ${address}\nPaiement: ${payLabel}\n\nN° commande: #${orderId}\n✅ Confirmer: ${confirmLink}`;
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+}
 
+function orderWhatsApp(type) {
+  const price = type === 'virement' ? PRICES.discounted : PRICES.full;
   const messages = {
     ar: {
-      cod: `مرحبا، بغيت نطلب قفل SmartLook 🔐\n\n- الثمن: ${PRICES.full} درهم\n- طريقة الدفع: عند الاستلام\n- التوصيل: مجاني\n\nالاسم: \nالعنوان: \nرقم الهاتف: \n\nرقم الطلب: #${waOrderId}\n✅ تأكيد الطلب: ${confirmLink}`,
-      virement: `مرحبا، بغيت نطلب قفل SmartLook بالتحويل البنكي 🔐💳\n\n- الثمن النهائي: ${PRICES.discounted} درهم\n- التوصيل: مجاني\n\nالاسم: \nالعنوان: \nرقم الهاتف: \n\nرقم الطلب: #${waOrderId}\n✅ تأكيد الطلب: ${confirmLink}`
+      cod: `مرحبا، بغيت نطلب قفل SmartLook 🔐\n\n- الثمن: ${PRICES.full} درهم\n- طريقة الدفع: عند الاستلام\n- التوصيل: مجاني\n\nالاسم: \nالعنوان: \nرقم الهاتف: `,
+      virement: `مرحبا، بغيت نطلب قفل SmartLook بالتحويل البنكي 🔐💳\n\n- الثمن النهائي: ${PRICES.discounted} درهم\n- التوصيل: مجاني\n\nالاسم: \nالعنوان: \nرقم الهاتف: `
     },
     fr: {
-      cod: `Bonjour, je voudrais commander la serrure SmartLook 🔐\n\n- Prix: ${PRICES.full} DH\n- Paiement: à la livraison\n- Livraison: gratuite\n\nNom: \nAdresse: \nTéléphone: \n\nN° commande: #${waOrderId}\n✅ Confirmer: ${confirmLink}`,
-      virement: `Bonjour, je voudrais commander la serrure SmartLook par virement 🔐💳\n\n- Prix final: ${PRICES.discounted} DH\n- Livraison: gratuite\n\nNom: \nAdresse: \nTéléphone: \n\nN° commande: #${waOrderId}\n✅ Confirmer: ${confirmLink}`
+      cod: `Bonjour, je voudrais commander la serrure SmartLook 🔐\n\n- Prix: ${PRICES.full} DH\n- Paiement: à la livraison\n\nNom: \nAdresse: \nTéléphone: `,
+      virement: `Bonjour, je voudrais commander SmartLook par virement 🔐💳\n\n- Prix final: ${PRICES.discounted} DH\n\nNom: \nAdresse: \nTéléphone: `
     }
   };
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(messages[currentLang][type])}`, '_blank');
