@@ -878,7 +878,7 @@ function renderTable() {
       <td>
         <div class="row-actions">
           <button class="action-btn btn-edit" onclick="editOrder('${o.id}')"><i class="fas fa-edit"></i></button>
-          <button class="action-btn btn-wa" onclick="contactWA('${o.id}')"><i class="fab fa-whatsapp"></i></button>
+          <button class="action-btn btn-wa" onclick="contactWA('${o.id}', this)"><i class="fab fa-whatsapp"></i></button>
           <button class="action-btn btn-delete" onclick="deleteOrder('${o.id}')"><i class="fas fa-trash"></i></button>
         </div>
       </td>
@@ -971,11 +971,11 @@ function deleteOrder(id) {
   updateStats();
 }
 
-function contactWA(id) {
+async function contactWA(id, btn) {
   const o = orders.find(x => x.id === id);
   if (!o) return;
   const payLabel = o.payment === 'virement' ? 'تحويل بنكي' : 'الدفع عند الاستلام';
-  const msg =
+  const message =
 `✅ مرحبا ${o.name}، تم تأكيد طلبك بنجاح!
 
 🔑 المنتج: قفل WD04 الذكي
@@ -986,7 +986,32 @@ function contactWA(id) {
 💰 المبلغ: ${o.price} درهم
 
 شكراً لثقتك بنا، سيتم التواصل معك قريباً لتحديد موعد التسليم. 🚀`;
-  window.open(`https://wa.me/212${o.phone.replace(/^0/, '').replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`, '_blank');
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+  try {
+    const res = await fetch('/.netlify/functions/send-whatsapp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: o.phone, message }),
+    });
+    if (res.ok) {
+      btn.innerHTML = '<i class="fas fa-check"></i>';
+      btn.style.background = '#22c55e';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fab fa-whatsapp"></i>';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    } else {
+      throw new Error('failed');
+    }
+  } catch {
+    btn.innerHTML = '<i class="fab fa-whatsapp"></i>';
+    btn.disabled = false;
+    alert('❌ فشل الإرسال، تحقق من اتصال Green API');
+  }
 }
 
 // Auto-update price when payment changes
