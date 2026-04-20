@@ -764,25 +764,36 @@ function checkAutoConfirm() {
 const ADMIN_USER = 'admin';
 const ADMIN_PASS = 'wd04admin'; // Change this!
 
+function showDashboard() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  renderTable();
+  updateStats();
+  checkAutoConfirm();
+}
+
 function doLogin() {
   const u = document.getElementById('login-user').value.trim();
   const p = document.getElementById('login-pass').value;
   if (u === ADMIN_USER && p === ADMIN_PASS) {
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('dashboard').style.display = 'block';
-    renderTable();
-    updateStats();
-    checkAutoConfirm();
+    localStorage.setItem('wd04_admin_session', '1');
+    showDashboard();
   } else {
     document.getElementById('login-error').style.display = 'block';
   }
 }
 
 function doLogout() {
+  localStorage.removeItem('wd04_admin_session');
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('dashboard').style.display = 'none';
   document.getElementById('login-user').value = '';
   document.getElementById('login-pass').value = '';
+}
+
+// auto-login if session exists
+if (localStorage.getItem('wd04_admin_session') === '1') {
+  showDashboard();
 }
 
 // ===== ORDERS =====
