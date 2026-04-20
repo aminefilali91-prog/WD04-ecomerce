@@ -878,7 +878,7 @@ function renderTable() {
       <td>
         <div class="row-actions">
           <button class="action-btn btn-edit" onclick="editOrder('${o.id}')"><i class="fas fa-edit"></i></button>
-          <button class="action-btn btn-wa" onclick="contactWA('${o.phone}', '${o.name}')"><i class="fab fa-whatsapp"></i></button>
+          <button class="action-btn btn-wa" onclick="contactWA('${o.id}')"><i class="fab fa-whatsapp"></i></button>
           <button class="action-btn btn-delete" onclick="deleteOrder('${o.id}')"><i class="fas fa-trash"></i></button>
         </div>
       </td>
@@ -971,9 +971,22 @@ function deleteOrder(id) {
   updateStats();
 }
 
-function contactWA(phone, name) {
-  const msg = `مرحبا ${name}، بخصوص طلبك لقفل WD04...`;
-  window.open(`https://wa.me/${phone.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`, '_blank');
+function contactWA(id) {
+  const o = orders.find(x => x.id === id);
+  if (!o) return;
+  const payLabel = o.payment === 'virement' ? 'تحويل بنكي' : 'الدفع عند الاستلام';
+  const msg =
+`✅ مرحبا ${o.name}، تم تأكيد طلبك بنجاح!
+
+🔑 المنتج: قفل WD04 الذكي
+📦 رقم الطلب: ${o.id}
+👤 الاسم: ${o.name}
+📍 المدينة: ${o.city}
+💳 طريقة الدفع: ${payLabel}
+💰 المبلغ: ${o.price} درهم
+
+شكراً لثقتك بنا، سيتم التواصل معك قريباً لتحديد موعد التسليم. 🚀`;
+  window.open(`https://wa.me/212${o.phone.replace(/^0/, '').replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 // Auto-update price when payment changes
