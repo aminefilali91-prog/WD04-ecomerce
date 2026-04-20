@@ -791,14 +791,16 @@ function doLogout() {
   document.getElementById('login-pass').value = '';
 }
 
-// auto-login if session exists
-if (localStorage.getItem('wd04_admin_session') === '1') {
-  showDashboard();
-}
-
 // ===== ORDERS =====
 let orders = JSON.parse(localStorage.getItem('wd04_orders') || '[]');
 let editingId = null;
+
+// auto-login if session exists
+document.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('wd04_admin_session') === '1') {
+    showDashboard();
+  }
+});
 
 function saveToStorage() {
   localStorage.setItem('wd04_orders', JSON.stringify(orders));
