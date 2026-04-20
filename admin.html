@@ -811,7 +811,7 @@ const statusMap = {
 
 function getPaymentBadge(o) {
   const isWa = o.notes && o.notes.includes('واتساب');
-  const waIcon = isWa ? ' <i class="fab fa-whatsapp" style="color:#25D366;margin-right:4px"></i>' : '';
+  const waIcon = isWa ? '<i class="fab fa-whatsapp" style="color:#25D366;margin-left:7px;margin-right:2px"></i>' : '';
   if (o.payment === 'cod') return `<span class="badge badge-cod">${waIcon}الدفع عند الاستلام</span>`;
   if (o.payment && o.payment.startsWith('virement')) {
     const sub = o.payment.includes('cashplus') ? 'Cash Plus' : 'تحويل بنكي';
