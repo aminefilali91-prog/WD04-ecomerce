@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartLook - قفل ذكي بصمة | Serrure Intelligente</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <div class="site-logo">Smart<span>Look</span></div>
+    <div class="navbar-langs">
+      <button class="lang-btn active" id="btn-ar" onclick="setLang('ar')">العربية</button>
+      <span>|</span>
+      <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">Français</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="hero">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="badge-top" data-ar="⭐ الأفضل مبيعاً في المغرب" data-fr="⭐ Meilleure vente au Maroc">⭐ الأفضل مبيعاً في المغرب</div>
+    <h1 class="hero-title" data-ar="قفل ذكي WD04" data-fr="Serrure Intelligente WD04">قفل ذكي WD04</h1>
+    <p class="hero-subtitle" data-ar="بصمة · كلمة سر · بطاقة RFID · WiFi · كاميرا عين القطة" data-fr="Empreinte · Code · Carte RFID · WiFi · Caméra Œil de Chat">بصمة · كلمة سر · بطاقة RFID · WiFi · كاميرا عين القطة</p>
+
+    <div class="hero-price-box">
+      <div class="price-normal">
+        <span data-ar="السعر:" data-fr="Prix:">السعر:</span>
+        <span class="price-strike">1875 درهم</span>
+      </div>
+      <div class="price-main">1500 <span data-ar="درهم" data-fr="DH">درهم</span></div>
+      <div class="price-tags">
+        <span class="tag green" data-ar="توصيل مجاني" data-fr="Livraison gratuite"><i class="fas fa-truck"></i> توصيل مجاني</span>
+        <span class="tag blue" data-ar="الدفع عند الاستلام" data-fr="Paiement à la livraison"><i class="fas fa-money-bill-wave"></i> الدفع عند الاستلام</span>
+      </div>
+      <div class="virement-promo" data-ar="💳 ادفع بالتحويل البنكي واستفد من خصم 20%" data-fr="💳 Payez par virement bancaire et bénéficiez de 20% de réduction">
+        💳 ادفع بالتحويل البنكي واستفد من خصم 20%
+      </div>
+      <button class="cta-btn hero-cta pulse" onclick="scrollToOrder()">
+        <i class="fas fa-shopping-cart"></i>
+        <span data-ar="اطلب الآن" data-fr="Commander maintenant">اطلب الآن</span>
+      </button>
+      <a class="hero-wa-link" href="#" onclick="orderWhatsApp('cod'); return false;">
+        <i class="fab fa-whatsapp"></i>
+        <span data-ar="أو تواصل عبر واتساب" data-fr="Ou contactez via WhatsApp">أو تواصل عبر واتساب</span>
+      </a>
+    </div>
+
+    <div class="hero-img-wrap">
+      <img src="image/looks.png" alt="WD04 Smart Lock" class="hero-img" />
+    </div>
+  </div>
+</header>
+
+<!-- TRUST BADGES -->
+<section class="trust-bar">
+  <div class="container trust-grid">
+    <div class="trust-item">
+      <i class="fas fa-shield-alt"></i>
+      <span data-ar="ضمان سنة كاملة" data-fr="Garantie 1 an">ضمان سنة كاملة</span>
+    </div>
+    <div class="trust-item">
+      <i class="fas fa-truck"></i>
+      <span data-ar="توصيل مجاني لكل المغرب" data-fr="Livraison gratuite partout au Maroc">توصيل مجاني لكل المغرب</span>
+    </div>
+    <div class="trust-item">
+      <i class="fas fa-undo"></i>
+      <span data-ar="إمكانية الإرجاع خلال 7 أيام" data-fr="Retour sous 7 jours">إمكانية الإرجاع خلال 7 أيام</span>
+    </div>
+    <div class="trust-item">
+      <i class="fas fa-headset"></i>
+      <span data-ar="دعم فني مجاني" data-fr="Support technique gratuit">دعم فني مجاني</span>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO / PRODUCT SHOWCASE -->
+<section class="showcase section-dark">
+  <div class="container">
+    <h2 class="section-title" data-ar="تعرف على قفل WD04 الذكي" data-fr="Découvrez la serrure WD04">تعرف على قفل WD04 الذكي</h2>
+    <div class="showcase-grid">
+      <div class="showcase-imgs">
+        <div class="img-gallery">
+          <img src="image/looks.png" alt="WD04" class="gallery-main" id="mainImg" />
+          <div class="gallery-thumbs">
+            <img src="image/looks.png" onclick="changeImg(this)" class="thumb active" />
+            <img src="image/pic.png" onclick="changeImg(this)" class="thumb" />
+            <img src="image/mk.png" onclick="changeImg(this)" class="thumb" />
+            <img src="image/aze.png" onclick="changeImg(this)" class="thumb" />
+          </div>
+        </div>
+      </div>
+      <div class="showcase-text">
+        <h3 data-ar="أمان منزلك في يدك" data-fr="La sécurité de votre maison dans vos mains">أمان منزلك في يدك</h3>
+        <p data-ar="قفل WD04 هو الحل الأمثل لتأمين منزلك بتقنية متطورة وتصميم فاخر. يجمع بين البصمة والكاميرا والتحكم عن بعد لتجربة أمان لا مثيل لها." data-fr="La serrure WD04 est la solution idéale pour sécuriser votre maison avec une technologie avancée et un design luxueux. Combine empreinte digitale, caméra et contrôle à distance.">قفل WD04 هو الحل الأمثل لتأمين منزلك بتقنية متطورة وتصميم فاخر. يجمع بين البصمة والكاميرا والتحكم عن بعد لتجربة أمان لا مثيل لها.</p>
+        <ul class="check-list">
+          <li data-ar="✅ التعرف على البصمة في أقل من 0.6 ثانية" data-fr="✅ Reconnaissance d'empreinte en moins de 0.6 seconde">✅ التعرف على البصمة في أقل من 0.6 ثانية</li>
+          <li data-ar="✅ يدعم 100 بصمة + 100 كلمة سر + 100 بطاقة" data-fr="✅ Supporte 100 empreintes + 100 codes + 100 cartes">✅ يدعم 100 بصمة + 100 كلمة سر + 100 بطاقة</li>
+          <li data-ar="✅ تحكم كامل عبر تطبيق Tuya" data-fr="✅ Contrôle total via l'application Tuya">✅ تحكم كامل عبر تطبيق Tuya</li>
+          <li data-ar="✅ مادة ألومنيوم فاخرة مقاومة للصدأ" data-fr="✅ Aluminium de luxe résistant à la corrosion">✅ مادة ألومنيوم فاخرة مقاومة للصدأ</li>
+          <li data-ar="✅ يناسب 99% من الأبواب (38-55mm)" data-fr="✅ Compatible avec 99% des portes (38-55mm)">✅ يناسب 99% من الأبواب (38-55mm)</li>
+          <li data-ar="✅ مقاوم للماء والأتربة" data-fr="✅ Résistant à l'eau et à la poussière">✅ مقاوم للماء والأتربة</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="video-section section-dark">
+  <div class="container">
+    <h2 class="section-title" data-ar="شاهد القفل في العمل" data-fr="Voir la serrure en action">شاهد القفل في العمل</h2>
+    <div class="video-wrap">
+      <video controls preload="metadata" poster="image/looks.png">
+        <source src="video/2026-04-18 12-23-33.mkv" type="video/x-matroska" />
+        <source src="video/2026-04-18 12-23-33.mkv" />
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features section-light">
+  <div class="container">
+    <h2 class="section-title dark" data-ar="مميزات القفل الذكي WD04" data-fr="Caractéristiques de la serrure WD04">مميزات القفل الذكي WD04</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-fingerprint"></i></div>
+        <h4 data-ar="بصمة إصبع" data-fr="Empreinte digitale">بصمة إصبع</h4>
+        <p data-ar="تقنية بيومترية متقدمة تتعرف على بصمتك في أقل من نصف ثانية بدقة 99.9999%" data-fr="Technologie biométrique avancée reconnaissant votre empreinte en moins d'une demi-seconde">تقنية بيومترية متقدمة تتعرف على بصمتك في أقل من نصف ثانية بدقة 99.9999%</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-wifi"></i></div>
+        <h4 data-ar="WiFi ذكي" data-fr="WiFi Intelligent">WiFi ذكي</h4>
+        <p data-ar="تحكم في قفلك من أي مكان في العالم عبر تطبيق Tuya الذكي على هاتفك" data-fr="Contrôlez votre serrure depuis n'importe où dans le monde via l'application Tuya">تحكم في قفلك من أي مكان في العالم عبر تطبيق Tuya الذكي على هاتفك</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-camera"></i></div>
+        <h4 data-ar="كاميرا عين القطة" data-fr="Caméra Œil de Chat">كاميرا عين القطة</h4>
+        <p data-ar="شاشة عرض مدمجة تتيح لك رؤية من بالباب قبل الفتح لمزيد من الأمان" data-fr="Écran intégré vous permettant de voir qui est à la porte avant d'ouvrir">شاشة عرض مدمجة تتيح لك رؤية من بالباب قبل الفتح لمزيد من الأمان</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-credit-card"></i></div>
+        <h4 data-ar="بطاقة RFID" data-fr="Carte RFID">بطاقة RFID</h4>
+        <p data-ar="استخدم بطاقات RFID للدخول السريع والسهل - مثالي للضيوف والزوار" data-fr="Utilisez des cartes RFID pour un accès rapide et facile - idéal pour les invités">استخدم بطاقات RFID للدخول السريع والسهل - مثالي للضيوف والزوار</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-lock"></i></div>
+        <h4 data-ar="كلمة سر" data-fr="Code secret">كلمة سر</h4>
+        <p data-ar="كلمة سر من 4 إلى 8 أرقام مع خاصية الأرقام الوهمية لمنع التجسس" data-fr="Code de 4 à 8 chiffres avec fonction anti-espionnage">كلمة سر من 4 إلى 8 أرقام مع خاصية الأرقام الوهمية لمنع التجسس</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-key"></i></div>
+        <h4 data-ar="مفتاح احتياطي" data-fr="Clé de secours">مفتاح احتياطي</h4>
+        <p data-ar="مفتاح ميكانيكي احتياطي لضمان الدخول في حالات الطوارئ أو انتهاء البطاريات" data-fr="Clé mécanique de secours pour garantir l'accès en cas d'urgence">مفتاح ميكانيكي احتياطي لضمان الدخول في حالات الطوارئ أو انتهاء البطاريات</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS TABLE -->
+<section class="specs section-dark">
+  <div class="container">
+    <h2 class="section-title" data-ar="المواصفات التقنية" data-fr="Spécifications Techniques">المواصفات التقنية</h2>
+    <div class="specs-table-wrap">
+      <table class="specs-table">
+        <tbody>
+          <tr>
+            <td data-ar="الموديل" data-fr="Modèle">الموديل</td>
+            <td>WD04</td>
+          </tr>
+          <tr>
+            <td data-ar="سماكة الباب" data-fr="Épaisseur de porte">سماكة الباب</td>
+            <td data-ar="38 - 55 مم" data-fr="38 - 55 mm">38 - 55 مم</td>
+          </tr>
+          <tr>
+            <td data-ar="أبعاد جسم القفل" data-fr="Dimensions du corps">أبعاد جسم القفل</td>
+            <td>248 × 63 × 21 مم</td>
+          </tr>
+          <tr>
+            <td data-ar="مصدر الطاقة" data-fr="Source d'énergie">مصدر الطاقة</td>
+            <td data-ar="4 × بطاريات AAA" data-fr="4 × piles AAA">4 × بطاريات AAA</td>
+          </tr>
+          <tr>
+            <td data-ar="عمر البطاريات" data-fr="Durée des piles">عمر البطاريات</td>
+            <td data-ar="~7000 عملية فتح" data-fr="~7000 ouvertures">~7000 عملية فتح</td>
+          </tr>
+          <tr>
+            <td data-ar="سرعة التعرف على البصمة" data-fr="Vitesse reconnaissance">سرعة التعرف على البصمة</td>
+            <td data-ar="أقل من 0.6 ثانية" data-fr="Moins de 0.6 seconde">أقل من 0.6 ثانية</td>
+          </tr>
+          <tr>
+            <td data-ar="سعة التخزين (Tuya)" data-fr="Capacité stockage (Tuya)">سعة التخزين (Tuya)</td>
+            <td data-ar="100 بصمة / 100 بطاقة / 100 كلمة سر" data-fr="100 empreintes / 100 cartes / 100 codes">100 بصمة / 100 بطاقة / 100 كلمة سر</td>
+          </tr>
+          <tr>
+            <td data-ar="درجة الحرارة" data-fr="Température de fonctionnement">درجة الحرارة</td>
+            <td>-20°C ~ 45°C</td>
+          </tr>
+          <tr>
+            <td data-ar="الرطوبة" data-fr="Humidité">الرطوبة</td>
+            <td>20% ~ 95% RH</td>
+          </tr>
+          <tr>
+            <td data-ar="اللون" data-fr="Couleur">اللون</td>
+            <td data-ar="ذهبي فاخر / أسود" data-fr="Or luxe / Noir">ذهبي فاخر / أسود</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER FORM SECTION -->
+<section class="payment section-dark" id="order-section">
+  <div class="container">
+    <h2 class="section-title" data-ar="اطلب الآن" data-fr="Passez votre commande">اطلب الآن</h2>
+
+    <div class="order-layout">
+
+      <!-- LEFT: Product summary -->
+      <div class="order-summary">
+        <img src="image/looks.png" alt="WD04" class="order-img" />
+        <div class="order-product-name">قفل ذكي WD04</div>
+        <ul class="order-features">
+          <li><i class="fas fa-check"></i> <span data-ar="توصيل مجاني لكل المغرب" data-fr="Livraison gratuite au Maroc">توصيل مجاني لكل المغرب</span></li>
+          <li><i class="fas fa-check"></i> <span data-ar="التوصيل خلال 2-4 أيام" data-fr="Livraison en 2-4 jours">التوصيل خلال 2-4 أيام</span></li>
+          <li><i class="fas fa-check"></i> <span data-ar="ضمان سنة كاملة" data-fr="Garantie 1 an">ضمان سنة كاملة</span></li>
+          <li><i class="fas fa-check"></i> <span data-ar="دعم فني مجاني" data-fr="Support technique gratuit">دعم فني مجاني</span></li>
+        </ul>
+        <div class="order-trust">
+          <i class="fas fa-shield-alt"></i>
+          <span data-ar="طلبك محمي ومضمون ✓" data-fr="Votre commande est sécurisée ✓">طلبك محمي ومضمون ✓</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="order-form-wrap">
+        <h3 class="form-title" data-ar="أملأ بيانات طلبك" data-fr="Remplissez votre commande">أملأ بيانات طلبك</h3>
+
+        <div id="form-success" class="form-success-msg" style="display:none">
+          <i class="fas fa-check-circle"></i>
+          <span data-ar="تم إرسال طلبك بنجاح! سنتواصل معك قريباً ✓" data-fr="Votre commande a été envoyée! Nous vous contacterons bientôt ✓">تم إرسال طلبك بنجاح! سنتواصل معك قريباً ✓</span>
+        </div>
+
+        <form id="order-form" onsubmit="submitOrder(event)">
+          <div class="field-group">
+            <label data-ar="الاسم الكامل" data-fr="Nom complet">الاسم الكامل</label>
+            <input type="text" id="ord-name" data-placeholder-ar="اسمك الكامل" data-placeholder-fr="Votre nom complet" placeholder="اسمك الكامل" required />
+          </div>
+          <div class="field-group">
+            <label data-ar="رقم الهاتف" data-fr="Téléphone">رقم الهاتف</label>
+            <input type="tel" id="ord-phone" data-placeholder-ar="06 00 00 00 00" data-placeholder-fr="06 00 00 00 00" placeholder="06 00 00 00 00" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" required />
+          </div>
+          <div class="field-group">
+            <label data-ar="المدينة" data-fr="Ville">المدينة</label>
+            <input type="text" id="ord-city" data-placeholder-ar="الدار البيضاء، الرباط، مراكش..." data-placeholder-fr="Casablanca, Rabat, Marrakech..." placeholder="الدار البيضاء، الرباط، مراكش..." required />
+          </div>
+          <div class="field-group">
+            <label data-ar="العنوان الكامل" data-fr="Adresse complète">العنوان الكامل</label>
+            <input type="text" id="ord-address" data-placeholder-ar="الشارع، الحي، الرقم..." data-placeholder-fr="Rue, immeuble, appartement, quartier" placeholder="الشارع، الحي، الرقم..." required />
+          </div>
+
+          <div class="field-group">
+            <label data-ar="طريقة الدفع" data-fr="Mode de paiement">طريقة الدفع</label>
+            <div class="payment-options">
+              <label class="pay-option selected" id="opt-cod" onclick="selectPayment('cod')">
+                <input type="radio" name="payment" value="cod" checked hidden />
+                <div class="pay-radio"><span class="pay-dot"></span></div>
+                <div class="pay-info">
+                  <span class="pay-name" data-ar="الدفع عند الاستلام" data-fr="À la livraison">الدفع عند الاستلام</span>
+                  <span class="pay-desc" data-ar="ادفع عند وصول الطلب" data-fr="Payez à la réception">ادفع عند وصول الطلب</span>
+                </div>
+                <span class="pay-price">1500 DH</span>
+              </label>
+              <label class="pay-option" id="opt-virement" onclick="openVirementModal()">
+                <input type="radio" name="payment" value="virement" hidden />
+                <div class="pay-radio"><span class="pay-dot"></span></div>
+                <div class="pay-info">
+                  <span class="pay-name" data-ar="الدفع المسبق" data-fr="Paiement anticipé">الدفع المسبق</span>
+                  <span class="pay-desc" data-ar="وفر 300 درهم" data-fr="Économisez 300 DH">وفر 300 درهم</span>
+                </div>
+                <div class="pay-price-wrap">
+                  <span class="pay-price green">1200 DH</span>
+                  <span class="pay-badge-20">-20%</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-order-btn">
+            <i class="fas fa-shopping-cart"></i>
+            <span data-ar="تأكيد الطلب" data-fr="Commander maintenant">تأكيد الطلب</span>
+          </button>
+          <p class="form-note" data-ar="سنتواصل معك قريباً لتأكيد التوصيل" data-fr="Nous vous rappellerons sous peu pour confirmer la livraison.">سنتواصل معك قريباً لتأكيد التوصيل</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials section-dark">
+  <div class="container">
+    <h2 class="section-title" data-ar="آراء عملائنا" data-fr="Avis de nos clients">آراء عملائنا</h2>
+    <div class="testi-summary">
+      <div class="testi-score">4.9</div>
+      <div>
+        <div class="testi-stars-big">★★★★★</div>
+        <div class="testi-count" data-ar="بناءً على 30+ تقييم موثق" data-fr="Basé sur 30+ avis vérifiés">بناءً على 30+ تقييم موثق</div>
+      </div>
+    </div>
+    <div class="testi-slider-wrap">
+      <button class="testi-arrow testi-prev" onclick="slideReviews(-1)"><i class="fas fa-chevron-right"></i></button>
+      <div class="testi-slider-viewport">
+        <div class="testimonials-grid" id="testi-grid"></div>
+      </div>
+      <button class="testi-arrow testi-next" onclick="slideReviews(1)"><i class="fas fa-chevron-left"></i></button>
+    </div>
+    <div class="testi-dots" id="testi-dots"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq section-light">
+  <div class="container">
+    <h2 class="section-title dark" data-ar="الأسئلة الشائعة" data-fr="Questions fréquentes">الأسئلة الشائعة</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-ar="هل القفل يناسب بابي؟" data-fr="Est-ce que la serrure est compatible avec ma porte?">هل القفل يناسب بابي؟</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-a">
+          <p data-ar="نعم، قفل WD04 يناسب 99% من الأبواب بسماكة 38 إلى 55 ملم، سواء كانت أبواب خشبية أو ألومنيوم." data-fr="Oui, la serrure WD04 est compatible avec 99% des portes d'une épaisseur de 38 à 55 mm, qu'elles soient en bois ou en aluminium.">نعم، قفل WD04 يناسب 99% من الأبواب بسماكة 38 إلى 55 ملم، سواء كانت أبواب خشبية أو ألومنيوم.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-ar="كيف أستفيد من خصم 20%؟" data-fr="Comment bénéficier de la réduction de 20%?">كيف أستفيد من خصم 20%؟</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-a">
+          <p data-ar="تواصل معنا عبر واتساب واطلب الدفع بالتحويل البنكي، وسنرسل لك رقم الحساب البنكي. بعد التأكيد سيصلك القفل بسعر 1200 درهم بدل 1500 درهم." data-fr="Contactez-nous via WhatsApp et demandez le paiement par virement bancaire, nous vous enverrons le numéro de compte. Après confirmation, vous recevrez la serrure à 1200 DH au lieu de 1500 DH.">تواصل معنا عبر واتساب واطلب الدفع بالتحويل البنكي، وسنرسل لك رقم الحساب البنكي. بعد التأكيد سيصلك القفل بسعر 1200 درهم بدل 1500 درهم.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-ar="ماذا يحدث لو انتهت البطاريات؟" data-fr="Que se passe-t-il si les piles sont déchargées?">ماذا يحدث لو انتهت البطاريات؟</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-a">
+          <p data-ar="القفل مجهز بمدخل USB خارجي لإمداده بالطاقة بشكل مؤقت، كما يأتي مع مفتاح ميكانيكي احتياطي لحالات الطوارئ." data-fr="La serrure est équipée d'une interface USB externe pour l'alimenter temporairement, et est livrée avec une clé mécanique de secours pour les urgences.">القفل مجهز بمدخل USB خارجي لإمداده بالطاقة بشكل مؤقت، كما يأتي مع مفتاح ميكانيكي احتياطي لحالات الطوارئ.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-ar="هل التركيب سهل؟" data-fr="L'installation est-elle facile?">هل التركيب سهل؟</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-a">
+          <p data-ar="نعم، التركيب بسيط ويأتي مع دليل مفصل. كما نقدم دعم فني مجاني عبر واتساب للمساعدة في التركيب." data-fr="Oui, l'installation est simple et est livrée avec un guide détaillé. Nous offrons également un support technique gratuit via WhatsApp pour aider à l'installation.">نعم، التركيب بسيط ويأتي مع دليل مفصل. كما نقدم دعم فني مجاني عبر واتساب للمساعدة في التركيب.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2 data-ar="أمّن منزلك اليوم!" data-fr="Sécurisez votre maison aujourd'hui!">أمّن منزلك اليوم!</h2>
+    <p data-ar="العرض محدود - اطلب الآن وادفع عند الاستلام" data-fr="Offre limitée - Commandez maintenant et payez à la livraison">العرض محدود - اطلب الآن وادفع عند الاستلام</p>
+    <div class="final-price">
+      <span class="f-strike">1875 <span data-ar="درهم" data-fr="DH">درهم</span></span>
+      <span class="f-main">1500 <span data-ar="درهم" data-fr="DH">درهم</span></span>
+    </div>
+    <button class="cta-btn hero-cta pulse big" onclick="scrollToOrder()">
+      <i class="fas fa-shopping-cart"></i>
+      <span data-ar="اطلب الآن" data-fr="Commander maintenant">اطلب الآن</span>
+    </button>
+    <p class="free-ship" data-ar="🚚 توصيل مجاني + دفع عند الاستلام" data-fr="🚚 Livraison gratuite + Paiement à la livraison">🚚 توصيل مجاني + دفع عند الاستلام</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-logo">Smart<span>Look</span></div>
+    <p data-ar="جميع الحقوق محفوظة © 2026 | قفل ذكي WD04" data-fr="Tous droits réservés © 2026 | Serrure WD04">جميع الحقوق محفوظة © 2026 | قفل ذكي WD04</p>
+    <a href="admin.html" class="admin-link" data-ar="لوحة الإدارة" data-fr="Panel Admin">لوحة الإدارة</a>
+  </div>
+</footer>
+
+<!-- VIREMENT MODAL -->
+<div class="vir-modal-overlay" id="vir-modal-overlay" onclick="closeVirementModal(event)">
+  <div class="vir-modal">
+    <button class="vir-modal-close" onclick="closeVirementModal()">✕</button>
+    <h3 class="vir-modal-title" data-ar="اختر طريقة الدفع المسبق" data-fr="Choisissez votre mode de prépaiement">اختر طريقة الدفع المسبق</h3>
+    <p class="vir-modal-sub" data-ar="ادفع مسبقاً واستفد من خصم 20% — 1200 درهم فقط" data-fr="Payez à l'avance et bénéficiez de 20% — 1200 DH seulement">ادفع مسبقاً واستفد من خصم 20% — 1200 درهم فقط</p>
+
+    <div class="vir-options">
+      <button class="vir-option" onclick="confirmVirement('bank')">
+        <div class="vir-icon">🏦</div>
+        <div class="vir-info">
+          <span class="vir-name" data-ar="تحويل بنكي" data-fr="Virement Bancaire">تحويل بنكي</span>
+          <span class="vir-desc" data-ar="تحويل مباشر إلى الحساب البنكي" data-fr="Virement direct vers le compte bancaire">تحويل مباشر إلى الحساب البنكي</span>
+        </div>
+        <i class="fas fa-chevron-left vir-arrow"></i>
+      </button>
+
+      <button class="vir-option" onclick="confirmVirement('cashplus')">
+        <div class="vir-icon"><img src="image/cash plus.png" alt="Cash Plus" style="width:40px;height:40px;object-fit:contain;border-radius:8px;"></div>
+        <div class="vir-info">
+          <span class="vir-name">Cash Plus</span>
+          <span class="vir-desc" data-ar="إيداع نقدي عبر وكالات Cash Plus" data-fr="Dépôt en espèces via les agences Cash Plus">إيداع نقدي عبر وكالات Cash Plus</span>
+        </div>
+        <i class="fas fa-chevron-left vir-arrow"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- BANK DETAILS MODAL -->
+<div class="bank-modal-overlay" id="bank-modal-overlay" onclick="closeBankModal(event)">
+  <div class="bank-modal">
+    <button class="vir-modal-close" onclick="closeBankModal()">✕</button>
+    <div class="bank-modal-header">
+      <div class="bank-modal-icon">🏦</div>
+      <h3 class="bank-modal-title" data-ar="معلومات التحويل البنكي" data-fr="Informations du virement bancaire">معلومات التحويل البنكي</h3>
+      <p class="bank-modal-sub" data-ar="حوّل المبلغ إلى الحساب التالي ثم اضغط تأكيد طلب" data-fr="Transférez le montant au compte ci-dessous puis confirmez">حوّل المبلغ إلى الحساب التالي ثم اضغط تأكيد طلب</p>
+    </div>
+
+    <div class="bank-details-grid">
+      <div class="bank-row">
+        <span class="bank-lbl" data-ar="البنك" data-fr="Banque">البنك</span>
+        <span class="bank-val">CIH Bank</span>
+      </div>
+      <div class="bank-row">
+        <span class="bank-lbl" data-ar="الاسم" data-fr="Nom">الاسم</span>
+        <span class="bank-val">SmartLook</span>
+      </div>
+      <div class="bank-row">
+        <span class="bank-lbl">RIB</span>
+        <span class="bank-val bank-rib" id="bank-rib-number" onclick="copyRIB()">230 780 0000000000000000 00 <i class="fas fa-copy"></i></span>
+      </div>
+      <div class="bank-row bank-row-amount">
+        <span class="bank-lbl" data-ar="المبلغ" data-fr="Montant">المبلغ</span>
+        <span class="bank-val bank-amount">1200 <small>درهم</small></span>
+      </div>
+    </div>
+
+    <div class="bank-actions">
+      <button class="bank-confirm-btn" onclick="confirmBankOrder()">
+        <i class="fas fa-check-circle"></i>
+        <span data-ar="تأكيد طلب" data-fr="Confirmer la commande">تأكيد طلب</span>
+      </button>
+      <button class="bank-print-btn" onclick="printBankDetails()">
+        <i class="fas fa-print"></i>
+        <span data-ar="طباعة" data-fr="Imprimer">طباعة</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+</div>
+
+<!-- THANK YOU OVERLAY -->
+<div class="thankyou-overlay" id="thankyou-overlay">
+  <div class="thankyou-box">
+    <div class="ty-icon">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <h2 class="ty-title" data-ar="شكراً على طلبك! 🎉" data-fr="Merci pour votre commande! 🎉">شكراً على طلبك! 🎉</h2>
+    <p class="ty-msg" data-ar="تم استلام طلبك بنجاح" data-fr="Votre commande a été reçue avec succès">تم استلام طلبك بنجاح</p>
+    <div class="ty-info-box">
+      <i class="fas fa-phone-alt"></i>
+      <span data-ar="سنتواصل معك في أقرب وقت لتأكيد طلبك وتحديد موعد التوصيل" data-fr="Nous vous contacterons très prochainement pour confirmer votre commande et fixer la date de livraison">سنتواصل معك في أقرب وقت لتأكيد طلبك وتحديد موعد التوصيل</span>
+    </div>
+    <div class="ty-details" id="ty-details"></div>
+
+    <div class="ty-vir-reminder" id="ty-vir-reminder" style="display:none">
+      <div class="ty-vir-alert">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span data-ar="مهم جداً!" data-fr="Très important!">مهم جداً!</span>
+      </div>
+      <p class="ty-vir-text" data-ar="أرسل لنا وصل التحويل و رقم الطلب عبر WhatsApp لتأكيد طلبك" data-fr="Envoyez-nous le reçu du virement et le numéro de commande via WhatsApp pour confirmer">أرسل لنا وصل التحويل و رقم الطلب عبر WhatsApp لتأكيد طلبك</p>
+      <a id="ty-vir-wa-btn" href="#" class="ty-vir-wa-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span data-ar="إرسال الوصل عبر واتساب" data-fr="Envoyer le reçu via WhatsApp">إرسال الوصل عبر واتساب</span>
+      </a>
+    </div>
+
+    <div class="ty-tags">
+      <span class="ty-tag"><i class="fas fa-truck"></i> <span data-ar="توصيل مجاني" data-fr="Livraison gratuite">توصيل مجاني</span></span>
+      <span class="ty-tag"><i class="fas fa-shield-alt"></i> <span data-ar="ضمان سنة" data-fr="Garantie 1 an">ضمان سنة</span></span>
+    </div>
+    <button class="ty-close-btn" onclick="closeThankyou()">
+      <span data-ar="العودة للصفحة الرئيسية" data-fr="Retour à la page principale">العودة للصفحة الرئيسية</span>
+    </button>
+  </div>
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<a href="#" class="floating-wa" onclick="orderWhatsApp('cod'); return false;">
+  <i class="fab fa-whatsapp"></i>
+  <span data-ar="اطلب الآن" data-fr="Commander">اطلب الآن</span>
+</a>
+
+<script src="script.js?v=2"></script>
+</body>
+</html>
