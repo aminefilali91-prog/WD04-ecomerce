@@ -299,6 +299,10 @@
             <i class="fas fa-shopping-cart"></i>
             <span data-ar="تأكيد الطلب" data-fr="Commander maintenant">تأكيد الطلب</span>
           </button>
+          <button type="button" class="submit-order-btn wa-order-btn" onclick="submitOrderWhatsApp()">
+            <i class="fab fa-whatsapp"></i>
+            <span data-ar="اطلب عبر واتساب" data-fr="Commander via WhatsApp">اطلب عبر واتساب</span>
+          </button>
           <p class="form-note" data-ar="سنتواصل معك قريباً لتأكيد التوصيل" data-fr="Nous vous rappellerons sous peu pour confirmer la livraison.">سنتواصل معك قريباً لتأكيد التوصيل</p>
         </form>
       </div>
@@ -514,7 +518,7 @@
 </div>
 
 <!-- FLOATING WHATSAPP -->
-<a href="#" class="floating-wa" onclick="orderWhatsApp('cod'); return false;">
+<a href="#" class="floating-wa" onclick="scrollToOrder(); return false;">
   <i class="fab fa-whatsapp"></i>
   <span data-ar="اطلب الآن" data-fr="Commander">اطلب الآن</span>
 </a>
