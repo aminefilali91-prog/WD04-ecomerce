@@ -737,6 +737,29 @@ function saveSettings() {
   setTimeout(() => { saved.style.display = 'none'; }, 2500);
 }
 
+// ===== AUTO CONFIRM =====
+function checkAutoConfirm() {
+  const params = new URLSearchParams(window.location.search);
+  const orderId = params.get('confirm');
+  if (!orderId) return;
+  let orders = JSON.parse(localStorage.getItem('wd04_orders') || '[]');
+  const order = orders.find(o => o.id === orderId);
+  if (!order) {
+    alert('⚠️ الطلب #' + orderId + ' ما تلاقاش.');
+    return;
+  }
+  if (order.status === 'confirmed') {
+    alert('✅ الطلب #' + orderId + ' مؤكد من قبل.');
+    return;
+  }
+  order.status = 'confirmed';
+  localStorage.setItem('wd04_orders', JSON.stringify(orders));
+  renderTable();
+  updateStats();
+  alert('✅ تم تأكيد طلب #' + orderId + ' (' + order.name + ') بنجاح!');
+  window.history.replaceState({}, '', 'admin.html');
+}
+
 // ===== AUTH =====
 const ADMIN_USER = 'admin';
 const ADMIN_PASS = 'wd04admin'; // Change this!
@@ -749,6 +772,7 @@ function doLogin() {
     document.getElementById('dashboard').style.display = 'block';
     renderTable();
     updateStats();
+    checkAutoConfirm();
   } else {
     document.getElementById('login-error').style.display = 'block';
   }

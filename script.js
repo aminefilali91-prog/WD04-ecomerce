@@ -30,15 +30,28 @@ function scrollToOrder() {
 }
 
 function orderWhatsApp(type) {
-  const price = type === 'virement' ? PRICES.discounted : PRICES.full;
+  const waOrderId = Date.now().toString().slice(-6);
+  const confirmLink = `https://sprightly-tartufo-573c77.netlify.app/admin.html?confirm=${waOrderId}`;
+  // save preliminary order
+  const orders = JSON.parse(localStorage.getItem('wd04_orders') || '[]');
+  orders.unshift({
+    id: waOrderId,
+    date: new Date().toLocaleDateString('ar-MA'),
+    name: '—', phone: '—', city: '—', address: '—',
+    payment: type === 'virement' ? 'virement_bank' : 'cod',
+    price: type === 'virement' ? PRICES.discounted : PRICES.full,
+    status: 'new', notes: 'طلب عبر واتساب'
+  });
+  localStorage.setItem('wd04_orders', JSON.stringify(orders));
+
   const messages = {
     ar: {
-      cod: `مرحبا، بغيت نطلب قفل SmartLook 🔐\n\n- الثمن: ${PRICES.full} درهم\n- طريقة الدفع: عند الاستلام\n- التوصيل: مجاني\n\nالاسم: \nالعنوان: \nرقم الهاتف: `,
-      virement: `مرحبا، بغيت نطلب قفل SmartLook بالتحويل البنكي 🔐💳\n\n- الثمن الأصلي: ${PRICES.full} درهم\n- الخصم 20%: -${PRICES.full - PRICES.discounted} درهم\n- الثمن النهائي: ${PRICES.discounted} درهم\n- التوصيل: مجاني\n\nالاسم: \nالعنوان: \nرقم الهاتف: `
+      cod: `مرحبا، بغيت نطلب قفل SmartLook 🔐\n\n- الثمن: ${PRICES.full} درهم\n- طريقة الدفع: عند الاستلام\n- التوصيل: مجاني\n\nالاسم: \nالعنوان: \nرقم الهاتف: \n\nرقم الطلب: #${waOrderId}\n✅ تأكيد الطلب: ${confirmLink}`,
+      virement: `مرحبا، بغيت نطلب قفل SmartLook بالتحويل البنكي 🔐💳\n\n- الثمن النهائي: ${PRICES.discounted} درهم\n- التوصيل: مجاني\n\nالاسم: \nالعنوان: \nرقم الهاتف: \n\nرقم الطلب: #${waOrderId}\n✅ تأكيد الطلب: ${confirmLink}`
     },
     fr: {
-      cod: `Bonjour, je voudrais commander la serrure SmartLook 🔐\n\n- Prix: ${PRICES.full} DH\n- Paiement: à la livraison\n- Livraison: gratuite\n\nNom: \nAdresse: \nTéléphone: `,
-      virement: `Bonjour, je voudrais commander la serrure SmartLook par virement 🔐💳\n\n- Prix original: ${PRICES.full} DH\n- Réduction 20%: -${PRICES.full - PRICES.discounted} DH\n- Prix final: ${PRICES.discounted} DH\n- Livraison: gratuite\n\nNom: \nAdresse: \nTéléphone: `
+      cod: `Bonjour, je voudrais commander la serrure SmartLook 🔐\n\n- Prix: ${PRICES.full} DH\n- Paiement: à la livraison\n- Livraison: gratuite\n\nNom: \nAdresse: \nTéléphone: \n\nN° commande: #${waOrderId}\n✅ Confirmer: ${confirmLink}`,
+      virement: `Bonjour, je voudrais commander la serrure SmartLook par virement 🔐💳\n\n- Prix final: ${PRICES.discounted} DH\n- Livraison: gratuite\n\nNom: \nAdresse: \nTéléphone: \n\nN° commande: #${waOrderId}\n✅ Confirmer: ${confirmLink}`
     }
   };
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(messages[currentLang][type])}`, '_blank');
