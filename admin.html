@@ -976,7 +976,10 @@ async function contactWA(id, btn) {
   if (!o) return;
   const payLabel = o.payment === 'virement' ? 'تحويل بنكي' : 'الدفع عند الاستلام';
   const message =
-`✅ مرحبا ${o.name}، تم تأكيد طلبك بنجاح!
+`مرحباً ${o.name} 👋
+
+تم استلام طلبكم ✅
+للتأكيد، يرجى مراجعة معلوماتكم أدناه:
 
 🔑 المنتج: قفل WD04 الذكي
 📦 رقم الطلب: ${o.id}
@@ -985,7 +988,7 @@ async function contactWA(id, btn) {
 💳 طريقة الدفع: ${payLabel}
 💰 المبلغ: ${o.price} درهم
 
-شكراً لثقتك بنا، سيتم التواصل معك قريباً لتحديد موعد التسليم. 🚀`;
+إن كانت المعلومات صحيحة، أكيدوا لنا برسالة ✔️`;
 
   btn.disabled = true;
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
