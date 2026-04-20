@@ -776,6 +776,7 @@ function doLogin() {
   const u = document.getElementById('login-user').value.trim();
   const p = document.getElementById('login-pass').value;
   if (u === ADMIN_USER && p === ADMIN_PASS) {
+    sessionStorage.setItem('wd04_admin_session', '1');
     showDashboard();
   } else {
     document.getElementById('login-error').style.display = 'block';
@@ -783,6 +784,7 @@ function doLogin() {
 }
 
 function doLogout() {
+  sessionStorage.removeItem('wd04_admin_session');
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('dashboard').style.display = 'none';
   document.getElementById('login-user').value = '';
@@ -793,6 +795,11 @@ function doLogout() {
 let orders = JSON.parse(localStorage.getItem('wd04_orders') || '[]');
 let editingId = null;
 
+document.addEventListener('DOMContentLoaded', () => {
+  if (sessionStorage.getItem('wd04_admin_session') === '1') {
+    showDashboard();
+  }
+});
 
 function saveToStorage() {
   localStorage.setItem('wd04_orders', JSON.stringify(orders));
