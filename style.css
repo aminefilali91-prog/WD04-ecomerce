@@ -1240,8 +1240,11 @@ body.lang-fr .floating-wa { left: auto; right: 28px; }
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .hero-content { grid-template-columns: 1fr; }
-  .hero-img-wrap { order: -1; }
-  .badge-top { grid-column: 1; }
+  .badge-top { grid-column: 1; order: 1; }
+  .hero-title { order: 2; }
+  .hero-subtitle { order: 3; }
+  .hero-img-wrap { order: 4; }
+  .hero-price-box { order: 5; }
   .trust-grid { grid-template-columns: repeat(2, 1fr); }
   .showcase-grid { grid-template-columns: 1fr; }
   .features-grid { grid-template-columns: repeat(2, 1fr); }
