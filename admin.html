@@ -796,6 +796,10 @@ let orders = JSON.parse(localStorage.getItem('wd04_orders') || '[]');
 let editingId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (new URLSearchParams(location.search).get('from') === 'site') {
+    sessionStorage.removeItem('wd04_admin_session');
+    history.replaceState({}, '', 'admin.html');
+  }
   if (sessionStorage.getItem('wd04_admin_session') === '1') {
     showDashboard();
   }
