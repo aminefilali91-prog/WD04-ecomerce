@@ -150,6 +150,7 @@ body.lang-fr { font-family: var(--font-fr); direction: ltr; }
   color: var(--gold);
   line-height: 1;
   margin-bottom: 16px;
+  white-space: nowrap;
 }
 
 .price-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
